@@ -6,8 +6,8 @@ from djangotoolbox.fields import ListField, EmbeddedModelField
 class User(models.Model):
     name = models.CharField(max_length=50)
     netid = models.CharField(max_length=50)
-    year = models.MENUSDJFLKSD:JFLSKDJF:L
-    major = models.MMEEUFEKJELKFNLK
+    #year = models.MENUSDJFLKSD:JFLSKDJF:L
+    #major = models.MMEEUFEKJELKFNLK
     coursesTaken = ListField(EmbeddedModelField("Course"))
     preferenceTags = ListField()
     def __unicode__(self):
