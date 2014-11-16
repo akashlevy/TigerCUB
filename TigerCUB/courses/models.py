@@ -1,6 +1,6 @@
 import datetime, time
 from django.db import models
-from djangotoolbox.fields import ListField, EmbeddedModelField
+from djangotoolbox.fields import ListField, DictField, EmbeddedModelField
 from django.contrib.auth.models import User
 
 tags = ["Language", "Science", "Engineering", "Politics", "Visual Arts", "Interdisciplinary", "Cultural"]
@@ -11,7 +11,7 @@ class UserProfile(models.Model):
     netid = models.CharField(max_length=50)
     year = models.IntegerField(max_length=50)
     major = EmbeddedModelField("Subject")
-    coursesTaken = DictField("Course")
+    coursesTaken = DictField(EmbeddedModelField("Course"))
     preferenceTags = ListField()
     def __unicode__(self):
         return name
@@ -46,9 +46,10 @@ class Subject(models.Model):
         return self.name
 
 class Course(models.Model):
+    subject = models.CharField(max_length=3)
     guid = models.IntegerField()
     courseID = models.IntegerField()
-    catalogNumber = models.CharField(max_length=3)
+    catalogNumber = models.CharField(max_length=4)
     title = models.CharField(max_length=300)
     detail = EmbeddedModelField("Detail")
     instructors = ListField(EmbeddedModelField("Instructor"))
@@ -59,7 +60,7 @@ class Course(models.Model):
     def getEvaluationURL():
         pass
     def __unicode__(self):
-        return self.title
+        return self.subject + self.catalogNumber
 
 class Detail(models.Model):
     startDate = models.DateField()

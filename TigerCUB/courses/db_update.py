@@ -68,6 +68,7 @@ def loadData():
             for courseElement in subjectElement.find("courses").findall("course"):
                 # Get course data
                 course = Course()
+                course.subject = subject.code
                 course.guid = int(courseElement.find("guid").text)
                 course.courseID = int(courseElement.find("course_id").text)
                 course.catalogNumber = courseElement.find("catalog_number").text

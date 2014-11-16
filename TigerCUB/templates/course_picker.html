@@ -84,11 +84,20 @@
     <div class="container">
 
       <form class="form-major" role="form">
-        <h3 align="center" class="form-major-heading"><strong>Concentration</strong></h3>
-		<h4 align="center" class="form-major-heading">What's your concentration (or intended concentration)?</h4>
+        <h3 align="center" class="form-major-heading"><strong>Personal Details</strong></h3>
+		    <h4 align="center" class="form-major-heading">What's your class year?</h4>
+        <select name="courseYear" class="form-control" required="">
+          <option value="" disabled="" selected="">What year are you currently in?</option>
+          <option value="0">Freshman</option>
+          <option value="1">Sophomore</option>
+          <option value="2">Junior</option>
+          <option value="3">Senior</option>
+        </select>
+
+        <h4 align="center" class="form-major-heading">What's your concentration (or intended concentration)?</h4>
         <label for="major" class="sr-only">Concentration</label>
-        <input type="major" id="Major" class="form-control" placeholder="Concentration (eg. MOL, AST, MAT)" required="" autofocus=""> 
-</form>
+        <input type="major" id="Major" class="form-control" placeholder="Concentration (eg. MOL, AST, MAT)" required="" autofocus="">
+        </form>
           
 
 <br>
@@ -139,6 +148,8 @@
               {% for term in request.user.courses %}
               <tr>
                 {% for course in request.user.courses_values %}
+                    <td>course
+                {% endfor %}
               {% endfor %}
               <tr>
 			  <td>
