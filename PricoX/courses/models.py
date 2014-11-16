@@ -1,17 +1,28 @@
 import datetime, time
 from django.db import models
 from djangotoolbox.fields import ListField, EmbeddedModelField
+from django.contrib.auth.models import User
 
+tags = ["Language", "Science", "Engineering", "Politics", "Visual Arts", "Interdisciplinary", "Cultural"]
 
-class User(models.Model):
+class UserProfile(models.Model):
+    user = EmbeddedModelField(User)
     name = models.CharField(max_length=50)
     netid = models.CharField(max_length=50)
-    #year = models.MENUSDJFLKSD:JFLSKDJF:L
-    #major = models.MMEEUFEKJELKFNLK
+    year = models.IntegerField(max_length=50)
+    major = EmbeddedModelField("Subject")
     coursesTaken = ListField(EmbeddedModelField("Course"))
     preferenceTags = ListField()
     def __unicode__(self):
         return name
+
+class Certificate(models.Model):
+    courseCategories = EmbeddedModelField("CourseCategory")
+    notes = models.TextField()
+
+class CourseCategory(models.Model):
+    courses = ListField(EmbeddedModelField("Course"))
+    numberNeeded = models.IntegerField()
 
 
 class Term(models.Model):
