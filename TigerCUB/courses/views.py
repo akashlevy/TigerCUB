@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from courses.models import tags
 
 def login_user(request):
@@ -23,3 +23,7 @@ def login_user(request):
         return render(request, 'course_picker.html', {'tags':tags})
     else:
         return render(request, 'auth.html', {'state':state, 'username': username})
+        
+def logout_user(request):
+    logout(request)
+    return redirect('/')
