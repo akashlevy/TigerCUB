@@ -15,13 +15,11 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'course_picker.html')
             else:
                 state = "Your account is not active, please contact the site admin."
         else:
             state = "Your username and/or password were incorrect."
-    return render(request, 'auth.html', {'state':state, 'username': username})
-
-def course_picker(request):
-    global tags
-    return render_to_response('course_picker.html', {"tags" : tags})
+    if request.user.is_authenticated():
+        return render(request, 'course_picker.html', {'tags':tags})
+    else:
+        return render(request, 'auth.html', {'state':state, 'username': username})
