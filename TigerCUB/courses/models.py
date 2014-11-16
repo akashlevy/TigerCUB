@@ -9,12 +9,12 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=50)
     netid = models.CharField(max_length=50)
-    year = models.IntegerField(max_length=50)
-    major = EmbeddedModelField("Subject")
-    coursesTaken = DictField(EmbeddedModelField("Course"))
+    userYear = models.IntegerField(max_length=50)
+    major = models.CharField(max_length=3)
+    coursesTaken = DictField(EmbeddedModelField(ListField))
     preferenceTags = ListField()
     def __unicode__(self):
-        return name
+        return self.name
 
 class Certificate(models.Model):
     courseCategories = EmbeddedModelField("CourseCategory")
@@ -60,7 +60,7 @@ class Course(models.Model):
     def getEvaluationURL():
         pass
     def __unicode__(self):
-        return self.subject + self.catalogNumber
+        return self.subject + u" " + self.catalogNumber
 
 class Detail(models.Model):
     startDate = models.DateField()

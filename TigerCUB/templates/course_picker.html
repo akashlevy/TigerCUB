@@ -83,10 +83,10 @@
   
     <div class="container">
 
-      <form class="form-major" role="form">
+      <form class="form-major" role="form" method="post">{% csrf_token %}
         <h3 align="center" class="form-major-heading"><strong>Personal Details</strong></h3>
 		    <h4 align="center" class="form-major-heading">What's your class year?</h4>
-        <select name="courseYear" class="form-control" required="">
+        <select name="userYear" class="form-control" required="">
           <option value="" disabled="" selected="">What year are you currently in?</option>
           <option value="0">Freshman</option>
           <option value="1">Sophomore</option>
@@ -96,19 +96,17 @@
 
         <h4 align="center" class="form-major-heading">What's your concentration (or intended concentration)?</h4>
         <label for="major" class="sr-only">Concentration</label>
-        <input type="major" id="Major" class="form-control" placeholder="Concentration (eg. MOL, AST, MAT)" required="" autofocus="">
-        </form>
+        <input type="major" name="major" class="form-control" placeholder="Concentration (eg. MOL, AST, MAT)" required="" autofocus="">
           
 
 <br>
-<form class="form-signing" role="form">
         <h3 align="center" class="form-signin-heading"><strong>Input Courses You've Taken</strong></h3>
 <h4 align="center" class="form-signin-heading">Add all of the courses you've taken at Princeton!</h4> <br>
+<font color="red">{{ state }}</font>
         <label for="department" class="sr-only">Department</label>
-        <input type="department" id="Dept" class="form-control" placeholder="Department (eg. MOL, AST, MAT)" required="" autofocus=""> 
+        <input type="department" name="department" class="form-control" placeholder="Department (eg. MOL, AST, MAT)" required="" autofocus=""> 
         <label for="Course Number" class="sr-only">Course Number</label>
-        <input type="coursenum" id="inputName" class="form-control" placeholder="Course Number" required="">
-          <form action="">
+        <input type="courseNum" name="courseNum" class="form-control" placeholder="Course Number" required="">
             <select name="courseYear" class="form-control" required="">
               <option value="" disabled="" selected="">What year did you take this course?</option>
               <option value="0">Freshman</option>
@@ -116,17 +114,13 @@
               <option value="2">Junior</option>
               <option value="3">Senior</option>
             </select>
-          </form>
-
-          <form action="">
-            <select name="courseTerm" class="form-control" required="">
+            <select name="courseSem" class="form-control" required="">
               <option value="" disabled="" selected="">What term did you take this course?</option>
               <option value="0">Fall</option>
               <option value="1">Spring</option>
             </select>
-          </form>
           <br><br>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Add Course</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" method="post">Add Course</button></form>
   
   <br><br><h3 align="center" class="table heading"><strong>Past Courses</strong></h3>
 <h4 align="center" class="table heading">Here, the engine will represent the courses you've taken in table format</h4>
@@ -145,26 +139,15 @@
               </tr>
             </thead>
             <tbody>
-              {% for term in request.user.courses %}
-              <tr>
-                {% for course in request.user.courses_values %}
-                    <td>course
-                {% endfor %}
-              {% endfor %}
-              <tr>
-			  <td>
-			  test
-			  </td>
-			  <td>
-			  test
-			  </td>
-			  <td>
-			  test
-			  </td>
-			  <td>
-			  test
-			  </td>
-              </tr>
+               {% for r in courseTable %}
+               <tr>
+               {% for c in r %}
+               <td>
+               {{ c }}
+               </td>
+               {% endfor %}
+               </tr>
+               {% endfor %}
             </tbody>
           </table>
         </div><div class="preferences">
@@ -172,7 +155,7 @@
   <h3 align="center" class="preferences checklist heading"><strong>Preferences</strong></h3>
 <h4 align="center" class="preferences subtext">Here, tick off the categories of courses that have been particularly interesting to you during your time at Princeton</h4>
   
-  <form action="file:///C:/Users/Bharath/Documents/Documents/Schoolwork/Clubs/Entrepreneurship%20Club/HackPrinceton/..." method="post">
+  <form action="file:///C:/Users/Bharath/Documents/Documents/Schoolwork/Clubs/Entrepreneurship%20Club/HackPrinceton/..." method="post">{% csrf_token %}
  <p>
  </p><fieldset align="left">
   {% for tag in tags %}
