@@ -11,7 +11,7 @@ class UserProfile(models.Model):
     netid = models.CharField(max_length=50)
     year = models.IntegerField(max_length=50)
     major = EmbeddedModelField("Subject")
-    coursesTaken = ListField(EmbeddedModelField("Course"))
+    coursesTaken = DictField("Course")
     preferenceTags = ListField()
     def __unicode__(self):
         return name

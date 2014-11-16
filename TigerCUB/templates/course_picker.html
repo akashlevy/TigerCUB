@@ -102,18 +102,18 @@
           <form action="">
             <select name="courseYear" class="form-control" required="">
               <option value="" disabled="" selected="">What year did you take this course?</option>
-              <option value="Freshman">Freshman</option>
-              <option value="Sophomore">Sophomore</option>
-              <option value="Junior">Junior</option>
-              <option value="Senior">Senior</option>
+              <option value="0">Freshman</option>
+              <option value="1">Sophomore</option>
+              <option value="2">Junior</option>
+              <option value="3">Senior</option>
             </select>
           </form>
 
           <form action="">
             <select name="courseTerm" class="form-control" required="">
               <option value="" disabled="" selected="">What term did you take this course?</option>
-              <option value="Fall">Fall</option>
-              <option value="Spring">Spring</option>
+              <option value="0">Fall</option>
+              <option value="1">Spring</option>
             </select>
           </form>
           <br><br>
@@ -136,6 +136,10 @@
               </tr>
             </thead>
             <tbody>
+              {% for term in request.user.courses %}
+              <tr>
+                {% for course in request.user.courses_values %}
+              {% endfor %}
               <tr>
 			  <td>
 			  test
