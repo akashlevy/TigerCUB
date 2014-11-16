@@ -52,7 +52,7 @@
     <div class="container">
   
         <div class="starter-template">
-        <h1> <strong>Course Updates</strong></h1>
+        <h1> <strong>Course Details</strong></h1>
         <p class="lead">The more you tell us, the more we can help! </p>
     </div>
 
@@ -83,13 +83,22 @@
     <![endif]-->
   
     <div class="container">
-
+<!--/CHANGED FOR CLASS YEAR-->
       <form class="form-major" role="form">
-        <h3 align="center" class="form-major-heading"><strong>Concentration</strong></h3>
-		<h4 align="center" class="form-major-heading">What's your concentration (or intended concentration)?</h4>
+        <h3 align="center" class="form-major-heading"><strong>Personal Details</strong></h3>
+		    <h4 align="center" class="form-major-heading">What's your class year?</h4>
+        <select name="courseYear" class="form-control" required="">
+          <option value="" disabled="" selected="">What year are you currently in?</option>
+          <option value="Freshman">Freshman</option>
+          <option value="Sophomore">Sophomore</option>
+          <option value="Junior">Junior</option>
+          <option value="Senior">Senior</option>
+        </select>
+
+        <h4 align="center" class="form-major-heading">What's your concentration (or intended concentration)?</h4>
         <label for="major" class="sr-only">Concentration</label>
-        <input type="major" id="Major" class="form-control" placeholder="Concentration (eg. MOL, AST, MAT)" required="" autofocus=""> 
-</form>
+        <input type="major" id="Major" class="form-control" placeholder="Concentration (eg. MOL, AST, MAT)" required="" autofocus="">
+        </form>
           
 
 <br>
