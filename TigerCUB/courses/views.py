@@ -8,9 +8,6 @@ def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        print username
-        print password
-
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -18,7 +15,7 @@ def login_user(request):
             else:
                 state = "Your account is not active, please contact the site admin."
         else:
-            state = "Your username and/or password were incorrect."
+            state = "NetID/password incorrect."
     if request.user.is_authenticated():
         return render(request, 'course_picker.html', {'tags':tags})
     else:

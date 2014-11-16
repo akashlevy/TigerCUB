@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 tags = ["Language", "Science", "Engineering", "Politics", "Visual Arts", "Interdisciplinary", "Cultural"]
 
 class UserProfile(models.Model):
-    user = EmbeddedModelField(User)
+    user = models.OneToOneField(User)
     name = models.CharField(max_length=50)
     netid = models.CharField(max_length=50)
     year = models.IntegerField(max_length=50)
