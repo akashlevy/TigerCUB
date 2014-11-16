@@ -24,7 +24,6 @@ class CourseCategory(models.Model):
     courses = ListField(EmbeddedModelField("Course"))
     numberNeeded = models.IntegerField()
 
-
 class Term(models.Model):
     code = models.IntegerField() #Registrar's numeric code, like '1114' for Spring 2011
     suffix = models.CharField(max_length=6) #Blackboard coursename suffix, like 'S2011'
@@ -37,7 +36,6 @@ class Term(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Subject(models.Model):
     code = models.CharField(max_length=3)
     name = models.CharField(max_length=100)
@@ -46,7 +44,6 @@ class Subject(models.Model):
     courses = ListField(EmbeddedModelField("Course"))
     def __unicode__(self):
         return self.name
-
 
 class Course(models.Model):
     guid = models.IntegerField()
@@ -64,7 +61,6 @@ class Course(models.Model):
     def __unicode__(self):
         return self.title
 
-
 class Detail(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
@@ -73,7 +69,6 @@ class Detail(models.Model):
     def __unicode___(self):
         return self.description
     
-
 class Instructor(models.Model):
     emplid = models.CharField(max_length=9)
     firstName = models.CharField(max_length=100)
@@ -82,13 +77,11 @@ class Instructor(models.Model):
     def __unicode__(self):
         return self.fullName
 
-
 class Crosslisting(models.Model):
     subject = models.CharField(max_length=3)
     catalogNumber = models.CharField(max_length=7)
     def __unicode__(self):
         return self.subject + u" " + self.catalog
-
 
 class Class(models.Model):
     classNumber = models.IntegerField()
@@ -101,14 +94,12 @@ class Class(models.Model):
     def __unicode__(self):
         return self.section
     
-
 class Schedule(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
     meetings = ListField(EmbeddedModelField("Meeting"))
     def __unicode__(self):
         return str(self.startDate) + " - " + str(self.endDate)
-
 
 class Meeting(models.Model):
     meetingNumber = models.IntegerField()
@@ -119,8 +110,7 @@ class Meeting(models.Model):
     days = ListField()
     def __unicode__(self):
         return self.days + u" " + unicode(self.startTime) + u" - " + unicode(self.endTime)
-
-    
+  
 class Building(models.Model):
     buildingCode = models.CharField(max_length=5)
     locationCode = models.CharField(max_length=4)

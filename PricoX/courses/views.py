@@ -1,24 +1,27 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from courses.models import tags
 
 def login_user(request):
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    state = ""
+    username = password = ''
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        print username
+        print password
 
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render_to_repsonse('course_picker.html')
+                return render(request, 'course_picker.html')
+            else:
+                state = "Your account is not active, please contact the site admin."
         else:
-            return render_to_response('auth.html', {"error" : "Username/password incorrect"})
-
-    return render_to_response('auth.html')
+            state = "Your username and/or password were incorrect."
+    return render(request, 'auth.html', {'state':state, 'username': username})
 
 def course_picker(request):
     global tags
     return render_to_response('course_picker.html', {"tags" : tags})
-            
-            

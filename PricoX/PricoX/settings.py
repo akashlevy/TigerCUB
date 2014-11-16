@@ -103,7 +103,7 @@ ROOT_URLCONF = 'PricoX.urls'
 WSGI_APPLICATION = 'PricoX.wsgi.application'
 
 TEMPLATE_DIRS = (
-    'C:/Users/Akash/Documents/PricoX/PricoX/templates'
+    'templates'
 )
 
 INSTALLED_APPS = (

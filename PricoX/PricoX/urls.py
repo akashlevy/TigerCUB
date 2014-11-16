@@ -12,4 +12,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'courses.views.login_user'),
-    url(r'^course_picker/', 'courses.views.course_picker'))
+    url(r'^course_picker/', 'courses.views.course_picker')
+)
