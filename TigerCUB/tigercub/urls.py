@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'courses.views.login_user'),
     url(r'^logout/', 'courses.views.logout_user'),
+    url(r'^results/', 'courses.views.results'),
 )
